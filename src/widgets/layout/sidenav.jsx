@@ -1,11 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  Button,
-  IconButton,
-  Typography,
-} from "@material-tailwind/react";
+import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
 
 export function Sidenav({ brandImg, brandName, routes }) {
@@ -25,7 +21,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
     >
       <div className={`relative`}>
         <Link to="/" className="py-6 px-8 text-center">
-          <img src="/img/delicremlogo.png" alt="Logo" className="mx-auto mb-1" style={{ width: '180px' }} />
+          <img src="/img/delicremlogo.png" alt="Logo" className="mx-auto mb-1" style={{ width: '200px' }} />
         </Link>
         <IconButton
           variant="text"
@@ -39,49 +35,55 @@ export function Sidenav({ brandImg, brandName, routes }) {
         </IconButton>
       </div>
       <div className="m-4 h-[calc(100vh-128px)] overflow-y-auto">
-        {routes.map(({ layout, title, pages }, key) => (
-          <ul key={key} className="mb-4 flex flex-col gap-1">
-            {title && (
-              <li className="mx-3.5 mt-4 mb-2">
-                <Typography
-                  variant="small"
-                  color={sidenavType === "dark" ? "white" : "blue-gray"}
-                  className="font-black uppercase opacity-75"
-                >
-                  {title}
-                </Typography>
-              </li>
-            )}
-            {pages.map(({ icon, name, path }) => (
-              <li key={name}>
-                <NavLink to={`/${layout}${path}`}>
-                  {({ isActive }) => (
-                    <Button
-                      variant={isActive ? "gradient" : "text"}
-                      color={
-                        isActive
-                          ? sidenavColor
-                          : sidenavType === "dark"
-                          ? "white"
-                          : "blue-gray"
-                      }
-                      className="flex items-center gap-4 px-4 capitalize"
-                      fullWidth
-                    >
-                      {icon}
-                      <Typography
-                        color="inherit"
-                        className="font-medium capitalize"
+        {routes
+          .filter(route => route.visible !== false) // Filtrar las rutas no visibles
+          .map(({ layout, title, pages }, key) => (
+            <ul key={key} className="mb-4 flex flex-col gap-1">
+              {title && (
+                <li className="mx-3.5 mt-4 mb-2">
+                  <Typography
+                    variant="small"
+                    color={sidenavType === "dark" ? "white" : "blue-gray"}
+                    className="font-black uppercase opacity-75"
+                  >
+                    {title}
+                  </Typography>
+                </li>
+              )}
+              {pages.map(({ icon, name, path }) => (
+                <li key={name}>
+                  <NavLink to={`/${layout}${path}`}>
+                    {({ isActive }) => (
+                      <Button
+                        variant={isActive ? "gradient" : "text"}
+                        color={
+                          isActive
+                            ? sidenavColor
+                            : sidenavType === "dark"
+                            ? "white"
+                            : "blue-gray"
+                        }
+                        className={`flex items-center gap-4 px-4 capitalize transition-all duration-300 ease-in-out transform ${
+                          isActive
+                            ? "scale-95"
+                            : "hover:scale-100"
+                        }`}
+                        fullWidth
                       >
-                        {name}
-                      </Typography>
-                    </Button>
-                  )}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        ))}
+                        {icon}
+                        <Typography
+                          color="inherit"
+                          className="font-medium capitalize"
+                        >
+                          {name}
+                        </Typography>
+                      </Button>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          ))}
       </div>
     </aside>
   );

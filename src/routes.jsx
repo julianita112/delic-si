@@ -5,9 +5,14 @@ import {
   InformationCircleIcon,
   ServerStackIcon,
   RectangleStackIcon,
+  BellIcon,
+  ClockIcon,
+  KeyIcon,
+  ShoppingBagIcon,
+  UserPlusIcon,
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications, Usuarios, Roles, Compras, Proveedores, Insumos, CategoriaInsumos, FichaTecnica, ProductoTerminado, Ventas, Clientes, Pedidos } from "@/pages/dashboard";
-import { SignIn, SignUp, } from "@/pages/auth";
+import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -15,8 +20,9 @@ const icon = {
 
 export const routes = [
   {
-    title: "www",
+    title: "autoriza",
     layout: "auth",
+    visible: false, // Propiedad para indicar que esta ruta no debe ser visible
     pages: [
       {
         icon: <ServerStackIcon {...icon} />,
@@ -26,18 +32,19 @@ export const routes = [
       },
     ],
   },
-   {
+  {
     title: "Configuración",
     layout: "dashboard",
+    visible: true,
     pages: [
       {
-        icon: <ServerStackIcon {...icon} />,
+        icon: <KeyIcon {...icon} />,
         name: "Roles y permisos",
         path: "/roles",
         element: <Roles />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
+        icon: <UserCircleIcon {...icon} />,
         name: "Usuarios",
         path: "/tables",
         element: <Tables />,
@@ -46,6 +53,7 @@ export const routes = [
   },
   {
     layout: "dashboard",
+    visible: true,
     pages: [
       {
         icon: <HomeIcon {...icon} />,
@@ -53,32 +61,16 @@ export const routes = [
         path: "/home",
         element: <Home />,
       },
-      {
-        icon: <UserCircleIcon {...icon} />,
-        name: "profile",
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        icon: <InformationCircleIcon {...icon} />,
-        name: "notifications",
-        path: "/notifications",
-        element: <Notifications />,
-      },
-      {
-        icon: <RectangleStackIcon {...icon} />,
-        name: "no",
-        path: "/usuarios",
-        element: <Usuarios />,
-      },
+      
     ],
   },
   {
     title: "Compras",
     layout: "dashboard",
+    visible: true,
     pages: [
       {
-        icon: <RectangleStackIcon {...icon} />,
+        icon: <UserPlusIcon {...icon} />,
         name: "Gestión de compras",
         path: "/compras",
         element: <Compras />,
@@ -118,6 +110,7 @@ export const routes = [
   {
     title: "Ventas",
     layout: "dashboard",
+    visible: true,
     pages: [
       {
         icon: <ServerStackIcon {...icon} />,
