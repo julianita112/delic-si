@@ -30,7 +30,7 @@ export function Proveedores() {
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-            Tabla de Usuarios
+            Proveedores
           </Typography>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
