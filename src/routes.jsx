@@ -7,13 +7,25 @@ import {
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications, Usuarios, Roles, Compras, Proveedores, Insumos, CategoriaInsumos, FichaTecnica, ProductoTerminado, Ventas, Clientes, Pedidos } from "@/pages/dashboard";
+import { SignIn, SignUp, } from "@/pages/auth";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
 };
 
 export const routes = [
-  
+  {
+    title: "www",
+    layout: "auth",
+    pages: [
+      {
+        icon: <ServerStackIcon {...icon} />,
+        name: "",
+        path: "/sign-in",
+        element: <SignIn />,
+      },
+    ],
+  },
    {
     title: "Configuración",
     layout: "dashboard",
